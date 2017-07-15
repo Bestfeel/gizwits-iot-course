@@ -80,6 +80,16 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
  }' 'http://localhost:8080/dev/control'
 ```
  
+ 
+ 
+ #### 部分语音和文本控制设备
+ 
+ ![image](images/pic01.png)
+ 
+ 
+ ![image](images/pic02.png)
+ 
+ 
 说明:部分使用的的依赖库需要开发源码编译,如下
 
 ```
