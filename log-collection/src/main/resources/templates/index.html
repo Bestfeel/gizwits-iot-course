@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="日志嗅探系统"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <script src="/js/sockjs.min.js"></script>
+    <script src="/js/stomp.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <title>日志采集系统</title>
+</head>
+
+<body>
+<div id="main">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="color:#fff" href="#">日志采集系统</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="explore-container">
+        <div class="chart-list-panel">
+            <div class="row">
+                <div class="col-lg-12" style="height:10000px;overflow: hidden;">
+                    <p id="response"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        var stompClient = null;
+
+        function connect() {
+            var socket = new SockJS('/endpointLogMonitor');
+            stompClient = Stomp.over(socket);
+            stompClient.connect('guest', 'guest', function () {
+                $("#response").html();
+                setInterval(function () {
+                    scrollTo(0, $("#response").height() - 200);
+                }, 10000);
+                stompClient.subscribe('/user/exchange/logMonitor', function (response) {
+                    showResponse(response.body);
+                }, function (e) {
+                    console.info("连接断开");
+                    setTimeout(connect, 2000);
+                    connect();
+                })
+            });
+        }
+
+        function disconnect() {
+            if (stompClient != null) {
+                stompClient.disconnect();
+            }
+            console.log('Disconnected');
+        }
+
+        function showResponse(message) {
+
+            if (message.indexOf('[DEBUG]') >= 0) {
+                $("#response").append('<p style="color:#3385FF;">' + message + '</p>');
+            }
+            else if (message.indexOf('[WARN]') >= 0) {
+                $("#response").append('<p style="color:#4cae4c;">' + message + '</p>');
+            }
+            else if (message.indexOf('[ERROR]') >= 0) {
+                $("#response").append('<p style="color:red;">' + message + '</p>');
+            }
+            else {
+                $("#response").append('<p style="color:red;">' + message + '</p>');
+//                $("#response").append('<p style="color:#666;">' + message + '</p>');
+            }
+
+            var diff = $("#response").height() - 10000;
+
+            if (diff >= -50) {
+                $("#response >p:first").remove();
+            }
+        }
+
+        connect();
+    })
+</script>
+</body>
+</html>

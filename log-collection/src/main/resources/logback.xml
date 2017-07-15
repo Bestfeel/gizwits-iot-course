@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 输出日志到控制台 -->
+    <appender
+            name="STDOUT"
+            class="ch.qos.logback.core.ConsoleAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <encoder charset="UTF-8">
+            <!--<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+            <pattern>[%level] %d{yyyy/MM/dd-HH:mm:ss} [%thread] TTL=%r %logger{36} [%c : %line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <appender name="rollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <param name="Encoding" value="UTF-8"/>
+        <file>log-collection.log</file>
+        <!-- 可让每天产生一个日志文件，最多 30 个，自动回滚 -->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+        <!--<fileNamePattern>application-server.%d{yyyy-MM-dd}.log</fileNamePattern>-->
+        <!--<maxHistory>30</maxHistory>-->
+        <!--</rollingPolicy>-->
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>log-collection.%i.log.zip</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>30</maxIndex>
+        </rollingPolicy>
+
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
+
+        <encoder charset="UTF-8">
+            <pattern>[%level] %d{yyyy/MM/dd-HH:mm:ss} [%thread] TTL=%r %logger{36} [%c : %line] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+
+    <root level="info">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="rollingFile"/>
+    </root>
+    <!--设置我们项目的日志级别为INFO-->
+    <logger name="com.gizwits" level="INFO" additivity="false">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="rollingFile"/>
+    </logger>
+    <!--设置 apache 的日志为ERROR-->
+    <logger name="org.apache">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.springframework">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.thymeleaf">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="org.hibernate">
+        <level value="ERROR"/>
+    </logger>
+    <logger name="springfox.documentation">
+        <level value="ERROR"/>
+    </logger>
+
+</configuration>

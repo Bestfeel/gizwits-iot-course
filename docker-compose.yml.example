@@ -1,0 +1,25 @@
+log:
+  container_name: log
+  image: daocloud.io/gizwits2015/log-collection
+  working_dir: /data
+  volumes:
+    - ./log:/data
+  ports:
+    - "8080:8080"
+  environment:
+    SECURITY_USER_NAME: "admin"
+    SECURITY_USER_PASSWORD: "123456"
+    LOGMONITOR_LOGPATH: "/data/log-collection.log"
+    APP_PRODUCT_KEY: "xx"
+    APP_DID: "xx"
+    APP_MAC: "xx"
+    APP_AUTH_ID: "xx"
+    APP_AUTH_SECRET: "xx"
+    APP_SUBKEY: "client"
+    APP_PREFETCH_COUNT: 50
+    WECHAT_MP_APPID: "xx"
+    WECHAT_MP_SECRET: "xx"
+    WECHAT_MP_TOKEN: "weixin"
+    WECHAT_MP_AESKEY: "xx"
+    SEMANTIC_API: "xx"
+
