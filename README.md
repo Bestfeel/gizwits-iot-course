@@ -92,8 +92,6 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
  
  ![image](images/pic02.png)
  
- 
- ![image]( )
 
 
 ###  视频演示
