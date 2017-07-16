@@ -85,7 +85,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
  
  
  
- #### 部分语音和文本控制设备
+ ### 部分语音和文本控制设备
  
  ![image](images/pic01.png)
  
@@ -93,9 +93,12 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
  ![image](images/pic02.png)
  
  
+ ![image]( )
 
 
-<iframe frameborder="0" width="640" height="498" src="https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&v=20161117&vid=w0526jgvvm1&auto=0" allowfullscreen></iframe>
+###  视频演示
+
+[![视频演示](background.png)](https://v.qq.com/x/page/w0526jgvvm1.html)
 
 
 
