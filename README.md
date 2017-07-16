@@ -96,7 +96,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 
 ###  视频演示
 
-[![视频演示](background.png)](https://v.qq.com/x/page/w0526jgvvm1.html)
+[![视频演示](images/background.png)](https://v.qq.com/x/page/w0526jgvvm1.html)
 
 
 
