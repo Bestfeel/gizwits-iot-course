@@ -93,8 +93,9 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
  ![image](images/pic02.png)
  
  
-<embed src="https://imgcache.qq.com/tencentvideo_v1/playerv3/TPout.swf?max_age=86400&v=20161117&vid=w0526jgvvm1&auto=0" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
- 
+<iframe frameborder="0" width="640" height="498" src="https://v.qq.com/iframe/player.html?vid=w0526jgvvm1&tiny=0&auto=0" allowfullscreen></iframe>
+
+
  
 说明:部分使用的的依赖库需要开发源码编译,如下
 
