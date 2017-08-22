@@ -1,0 +1,9 @@
+.idea
+*.iml
+.DS_Store
+log-collection/target
+data-analysis/target
+owen.md
+log/
+docker-compose.yml
+data-analysis/src/main/resources/rtdata.json
