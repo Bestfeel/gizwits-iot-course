@@ -99,19 +99,6 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: applica
 [![视频演示](images/background.png)](https://v.qq.com/x/page/w0526jgvvm1.html)
 
 
-
- 
-说明:部分使用的的依赖库需要开发源码编译,如下
-
-```
-<dependency>
-    <groupId>com.gizwits.noti2</groupId>
-    <artifactId>noti-netty-client</artifactId>
-    <version>0.1.0</version>
- </dependency>
-        
-```
-
 * [机智云开发者平台](http://dev.gizwits.com/)
 * [Snoti](http://docs.gizwits.com/zh-cn/Cloud/NotificationAPI.html)
 * [noti-netty-client](https://github.com/Bestfeel/noti-netty-client)
